@@ -27,9 +27,8 @@ jobs:
           REPO_NAME=$(basename ${GITHUB_REPOSITORY} | sed 's/Minecraft-//g')
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION_SUFFIX=$(echo ${GITHUB_REF#refs/tags/} | sed 's/\//-/g')
-            BRANCH_NAME=""
           fi
-          NEW_NAME="${REPO_NAME}${BRANCH_NAME:+-}${BRANCH_NAME}${VERSION_SUFFIX:+-}${VERSION_SUFFIX}"
+          NEW_NAME="${REPO_NAME}-${BRANCH_NAME}-${VERSION_SUFFIX}"
           echo "NEW_NAME=$NEW_NAME" >> $GITHUB_ENV
       - name: Upload artifact
         uses: actions/upload-artifact@v2
