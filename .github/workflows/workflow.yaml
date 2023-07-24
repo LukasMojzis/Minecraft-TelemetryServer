@@ -34,7 +34,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.NEW_NAME }}
+          name: ${{ env.NEW_NAME }}.zip
           path: ./${{ env.NEW_NAME }}
 
   release:
