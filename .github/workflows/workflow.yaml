@@ -23,7 +23,7 @@ jobs:
       - name: Package
         run: |
           VERSION_SUFFIX=$(git rev-parse --short HEAD)
-          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
+          BRANCH_NAME=$(git branch -r --contains $VERSION_SUFFIX | sed 's/.*\///' | head -n 1)
           REPO_NAME=$(basename ${GITHUB_REPOSITORY} | sed 's/Minecraft-//g')
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION_SUFFIX=$(echo ${GITHUB_REF#refs/tags/} | sed 's/\//-/g')
